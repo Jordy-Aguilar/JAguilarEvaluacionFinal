@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="JAguilarEvaluacionFinal.Views.PaginaGuardados"
-             Title="PaginaGuardados">
-    <StackLayout Padding="20">
-        <Label Text="Listado de aeropuertos consultados" FontAttributes="Bold" />
-        <ListView x:Name="jaguilar_listView" />
-    </StackLayout>
+             x:Class="JAguilarEvaluacionFinal.Views.BDD"
+             xmlns:viewmodels="clr-namespace:JAguilarEvaluacionFinal.Views"
+             Title="Registros BDD">
+    <ContentPage.BindingContext>
+        <views:BDD/>
+    </ContentPage.BindingContext>
+    <VerticalStackLayout Spacing="20">
+        <Label x:Name="jaguilar_Label1"
+            Text="Jordy Aguilar"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <ListView x:Name="jaguilar_ListView" ItemsSource="{Binding Aeropuertos}"/>
+        <Button x:Name="jaguilar_Button" Text="Actualizar" Command="{Binding ComandoActualizar}"/>
+    </VerticalStackLayout>
 </ContentPage>
-

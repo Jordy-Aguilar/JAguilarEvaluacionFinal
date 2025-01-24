@@ -8,12 +8,12 @@
     Title="JAguilarEvaluacionFinal">
 
     <TabBar>
-    <Tab Title="Buscar" Icon="search.png">
-        <ShellContent ContentTemplate="{DataTemplate local:PaginaBusqueda}" />
-    </Tab>
-    <Tab Title="Guardados" Icon="saved.png">
-        <ShellContent ContentTemplate="{DataTemplate local:PaginaGuardados}" />
-    </Tab>
+        <ShellContent
+        Title="Búsqueda"
+        ContentTemplate="{DataTemplate local:PaginaBusqueda}"/>
+        <ShellContent
+        Title="BDD"
+        ContentTemplate="{DataTemplate local:PaginaGuardados}"/>
     </TabBar>
 
 </Shell>

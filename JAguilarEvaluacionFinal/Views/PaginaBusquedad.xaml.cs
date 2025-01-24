@@ -1,56 +1,51 @@
-using System.Net.Http.Json;
-using Microsoft.Maui.Controls;
+using JAguilarEvaluacionFinal.Models;
+using JAguilarEvaluacionFinal.Servicios;  
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows.Input;
 
-namespace JAguilarEvaluacionFinal;
-
-public partial class PaginaBusquedad : ContentPage
+namespace JAguilarEvaluacionFinal.ViewModels
 {
-    private readonly AeropuertoBaseDatos _database;
-
-    public PaginaBusquedad()
+    public class PaginaBusqueda : INotifyPropertyChanged
     {
-        InitializeComponent();
-        _database = new AeropuertoBaseDatos();
-    }
+        public string Busqueda { get; set; }
 
-    private async void OnSearchButtonClicked(object sender, EventArgs e)
-    {
-        string nombrePais = jaguilar_searchEntry.Text;
+        public string Resultado { get; set; }
 
-        if (string.IsNullOrWhiteSpace(nombrePais))
+        public ICommand ComandoBusqueda { get; set; }
+
+        public ICommand ComandoLimpiar { get; set; }
+
+        public PaginaBusqueda()
         {
-            await DisplayAlert("Error", "Ingrese un nombre válido.", "OK");
-            return;
-        }
+            Busqueda = "";
+            Resultado = "";
 
-        try
-        {
-            using HttpClient client = new HttpClient();
-            string url = $"https://freetestapi.com/api/v1/airports?search={nombrePais}&limit=1";
-            var response = await client.GetFromJsonAsync<List<Aeropuerto>>(url);
-
-            if (response != null && response.Any())
+            ComandoBusqueda = new Command(async () =>
             {
-                var aeropuerto = response.First();
-                jaguilar_resultLabel.Text = $"Nombre: {aeropuerto.Nombre}, País: {aeropuerto.Pais}, Latitud: {aeropuerto.Latitud}, Longitud: {aeropuerto.Longitud}, Correo: {aeropuerto.Correo}";
+                Aeropuerto? aeropuertoJSON = await App.APIClient.GetAirport(Busqueda);
 
-                // Guardar en la base de datos
-                await _database.SaveAeropuertoAsync(aeropuerto);
-            }
-            else
+                if (aeropuertoJSON != null)
+                {
+                    App.DBConnection.SaveAirport(AirportConverter.Convert(aeropuertoJSON));
+                }
+
+                Resultado = aeropuertoJSON == null ? "Error: No se encontró el registro" : Aeropuerto.Nombre;
+                OnPropertyChanged(nameof(Resultado));
+            });
+
+            ComandoLimpiar = new Command(() =>
             {
-                jaguilar_resultLabel.Text = "No se encontraron aeropuertos.";
-            }
-        }
-        catch (Exception ex)
-        {
-            await DisplayAlert("Error", ex.Message, "OK");
-        }
-    }
+                Busqueda = "";
+                Resultado = "";
 
-    private void OnClearButtonClicked(object sender, EventArgs e)
-    {
-        jaguilar_searchEntry.Text = string.Empty;
-        jaguilar_resultLabel.Text = string.Empty;
+                OnPropertyChanged(nameof(Busqueda));
+                OnPropertyChanged(nameof(Resultado));
+            });
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        private void OnPropertyChanged([CallerMemberName] string name = "") => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
 }

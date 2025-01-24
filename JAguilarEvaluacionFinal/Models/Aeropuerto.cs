@@ -14,6 +14,6 @@ namespace JAguilarEvaluacionFinal.Models
         public double latitud { get; set; }
         public double longitud { get; set; }
         public string correo { get; set; }
-        public string usuario { get; set; }
+        public string JAguilar { get; set; } = "JAguilar";
     }
 }

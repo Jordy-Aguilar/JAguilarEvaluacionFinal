@@ -2,11 +2,20 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="JAguilarEvaluacionFinal.Views.PaginaBusquedad"
-             Title="PaginaBusquedad">
-    <StackLayout Padding="20">
-        <Entry x:Name="jaguilar_searchEntry" Placeholder="Ingrese el nombre del país" />
-        <Button x:Name="jaguilar_searchButton" Text="Buscar" Clicked="OnSearchButtonClicked" />
-        <Button x:Name="jaguilar_clearButton" Text="Limpiar" Clicked="OnClearButtonClicked" />
-        <Label x:Name="jaguilar_resultLabel" />
-    </StackLayout>
+             xmlns:viewmodels="clr-namespace:JAguilarEvaluacionFinal.ViewModels"
+             Title="Búsqueda">
+    <ContentPage.BindingContext>
+        <Views:PaginaBusquedad/>
+    </ContentPage.BindingContext>
+    <VerticalStackLayout>
+        <VerticalStackLayout x:Name="jaguilar_VerticalStackLayout" Spacing="20">
+            <Editor x:Name="jaguilar_Editor"
+                    Text="{Binding Busqueda}"/>
+            <HorizontalStackLayout x:Name="jaguilar_HorizontalStackLayout" HorizontalOptions="Center">
+                <Button x:Name="jaguilar_Button1" Text="Buscar" Command="{Binding ComandoBusqueda}"/>
+                <Button x:Name="jaguilar_Button2" Text="Limpiar" Command="{Binding ComandoLimpiar}"/>
+            </HorizontalStackLayout>
+            <Label x:Name="jaguilar_Label" Text="{Binding Resultado}"/>
+        </VerticalStackLayout>
+    </VerticalStackLayout>
 </ContentPage>

@@ -1,23 +1,40 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+ 
+namespace JAguilarEvaluacionFinal.Servicios;
 
-namespace JAguilarEvaluacionFinal.Servicios
+public class ServicioAeropuerto
 {
-    public class ServicioAeropuerto
+    private const string ApiBaseUrl = "https://freetestapi.com/api/v1/airports?search={name}";
+
+    public async Task<Aeropuerto?> BuscarAeropuerto(string nombre)
     {
-        private readonly HttpClient _clienteHttp;
-
-        public ServicioAeropuerto()
+        try
         {
-            _clienteHttp = new HttpClient();
+            using (var client = new HttpClient())
+            {
+                string url = $"{ApiBaseUrl}{nombre}&limit=1";
+
+                var response = await client.GetAsync(url);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var json = await response.Content.ReadAsStringAsync();
+                    var aeropuertos = JsonConvert.DeserializeObject<List<Aeropuerto>>(json);
+
+                    return aeropuertos.Count > 0 ? aeropuertos[0] : null;
+                }
+                else
+                {
+                    return null;
+                }
+            }
         }
-
-        public async Task<JObject> BuscarAeropuertoAsync(string consulta)
+        catch
         {
-            string url = $"https://aviation-edge.com/v2/public/airportDatabase?key=YOUR_API_KEY&codeIataAirport={consulta}";
-            var respuesta = await _clienteHttp.GetStringAsync(url);
-            return JObject.Parse(respuesta);
+            return null;
         }
     }
 }

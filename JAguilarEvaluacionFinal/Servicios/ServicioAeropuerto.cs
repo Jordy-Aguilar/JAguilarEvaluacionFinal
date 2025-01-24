@@ -1,41 +1,19 @@
-﻿using System.Net.Http;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using System.Collections.Generic;
-using JAguilarEvaluacionFinal.Models;
+﻿using JAguilarEvaluacionFinal.Models;
 
-namespace JAguilarEvaluacionFinal.Servicios;
-
-public class ServicioAeropuerto
+namespace JAguilarEvaluacionFinal.Servicios
 {
-    private const string ApiBaseUrl = "https://freetestapi.com/api/v1/airports?search={name}";
-
-    public async Task<Aeropuerto?> BuscarAeropuerto(string nombre)
+    public class ServicioAeropuerto
     {
-        try
+        public static Aeropuerto Convert(BaseDeDatos baseDeDatos)
         {
-            using (var client = new HttpClient())
+            return new Aeropuerto
             {
-                string url = $"{ApiBaseUrl}{nombre}&limit=1";
-
-                var response = await client.GetAsync(url);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var json = await response.Content.ReadAsStringAsync();
-                    var aeropuertos = JsonConvert.DeserializeObject<List<Aeropuerto>>(json);
-
-                    return aeropuertos.Count > 0 ? aeropuertos[0] : null;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-        }
-        catch
-        {
-            return null;
+                Nombre = baseDeDatos.Nombre,
+                Pais = baseDeDatos.Pais,
+                Latitud = baseDeDatos.Ubicacion.Latitud,   
+                Longitud = baseDeDatos.Ubicacion.Longitud, 
+                Correo = baseDeDatos.InformacionContacto.Correo 
+            };
         }
     }
 }

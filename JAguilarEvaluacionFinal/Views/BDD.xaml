@@ -11,7 +11,7 @@
     <VerticalStackLayout Spacing="20">
         <Label x:Name="jaguilar_Label1"
                Text="Hola soy Jordy Aguilar, tengo 21 años y este es mi examen final de Programación IV"
-               TextColor="Purple"
+               TextColor="Red"
                FontSize="30"
                FontAttributes="Bold"
                

@@ -4,9 +4,9 @@
              x:Class="JAguilarEvaluacionFinal.Views.PaginaBusquedad"
              Title="PaginaBusquedad">
     <StackLayout Padding="20">
-        <Label Text="Buscar Aeropuerto" FontSize="24" HorizontalOptions="Center" />
-        <Entry x:Name="NombreAeropuerto" Placeholder="Ingrese el nombre del aeropuerto" />
-        <Button Text="Buscar" Clicked="OnBuscarClicked" />
-        <Label x:Name="Resultado" Text="" FontSize="16" TextColor="Black" />
+        <Entry x:Name="jaguilar_searchEntry" Placeholder="Ingrese el nombre del país" />
+        <Button x:Name="jaguilar_searchButton" Text="Buscar" Clicked="OnSearchButtonClicked" />
+        <Button x:Name="jaguilar_clearButton" Text="Limpiar" Clicked="OnClearButtonClicked" />
+        <Label x:Name="jaguilar_resultLabel" />
     </StackLayout>
 </ContentPage>

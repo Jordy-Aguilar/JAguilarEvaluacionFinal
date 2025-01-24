@@ -4,8 +4,8 @@
              x:Class="JAguilarEvaluacionFinal.Views.PaginaGuardados"
              Title="PaginaGuardados">
     <StackLayout Padding="20">
-        <Label Text="Aeropuertos Guardados" FontSize="24" HorizontalOptions="Center" />
-        <ListView x:Name="ListaAeropuertos">
-        </ListView>
+        <Label Text="Listado de aeropuertos consultados" FontAttributes="Bold" />
+        <ListView x:Name="jaguilar_listView" />
     </StackLayout>
-</ContentPage>  
+</ContentPage>
+

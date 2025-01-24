@@ -7,9 +7,16 @@
     Shell.FlyoutBehavior="Disabled"
     Title="JAguilarEvaluacionFinal">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <TabBar>
+    <Tab Title="Buscar" Icon="search.png">
+        <ShellContent ContentTemplate="{DataTemplate local:PaginaBusqueda}" />
+    </Tab>
+    <Tab Title="Guardados" Icon="saved.png">
+        <ShellContent ContentTemplate="{DataTemplate local:PaginaGuardados}" />
+    </Tab>
+    </TabBar>
 
 </Shell>
+
+
+

@@ -6,7 +6,7 @@ namespace JAguilarEvaluacionFinal.ViewModels
 {
     public class BDDVM : INotifyPropertyChanged
     {
-        public List<string> Airports => App.DBConnection.GetAllAirports().Select(x => $"Nombre de Aeropuerto: {x.Name}, País: {x.Country}, Latitud: {x.Latitude}, Longitud: {x.Longitude}, Correo: {x.Email}, Autor: {x.MyName}").ToList();
+        public List<string> Airports => App.DBConnection.GetAllAirports().Select(x => $"Nombre de Aeropuerto: {x.Name}, País: {x.Country}, Latitud: {x.Latitude}, Longitud: {x.Longitude}, Correo: {x.Email}, Usuario: {x.MyName}").ToList();
 
         public ICommand ActualizarCommand { get; set; }
 

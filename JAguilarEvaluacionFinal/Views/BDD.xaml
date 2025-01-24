@@ -10,13 +10,20 @@
 
     <VerticalStackLayout Spacing="20">
         <Label x:Name="jaguilar_Label1"
-               Text="Hola soy Jordy Aguilar, tengo 21 años y este es mi examen final de Programación IV"
-               TextColor="Red"
+               Text="Hola soy Jordy Aguilar, este es mi examen final de Programación IV 🥹"
+               TextColor="MediumPurple"
                FontSize="30"
                FontAttributes="Bold"
                
                VerticalOptions="Center" 
                HorizontalOptions="Center" />
+
+        <Image Source="https://img.pikbest.com/wp/202345/airports-plane-parked-on-an-airport-tarmac_9590549.jpg!sw800"
+        Aspect="AspectFill" 
+        HeightRequest="200" 
+        HorizontalOptions="Center" 
+        VerticalOptions="Center"/>
+        
         <ListView x:Name="jaguilar_ListView" ItemsSource="{Binding Airports}"/>
         <Button x:Name="jaguilar_Button" Text="Actualizar Datos" Command="{Binding ActualizarCommand}"/>
     </VerticalStackLayout>

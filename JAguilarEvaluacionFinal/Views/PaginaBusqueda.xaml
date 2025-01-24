@@ -8,14 +8,42 @@
         <viewmodels:BusquedaVM />
     </ContentPage.BindingContext>
 
+
     <VerticalStackLayout Spacing="20">
+        <Label x:Name="jaguilar1_Label1"
+       Text="Ingrese el nombre del pais para buscar su Aeropuerto 👨‍✈️"
+       TextColor="MediumPurple"
+       FontSize="30"
+       FontAttributes="Bold"
+       
+       VerticalOptions="Center" 
+       HorizontalOptions="Center" />
+
         <Editor x:Name="jaguilar_Editor"
                 Text="{Binding Busqueda}"/>
+
+        <Image Source="https://wallpapers.com/images/hd/airport-pictures-x1o44x81sunpk2fm.jpg"
+               Aspect="AspectFill" 
+               HeightRequest="200" 
+               HorizontalOptions="Center" 
+               VerticalOptions="Center"/>
+
         <VerticalStackLayout x:Name="jaguilar_VerticalStackLayout" Spacing="10" HorizontalOptions="Center">
             <Button x:Name="jaguilar_Button1" Text="Buscar Aeropuerto" Command="{Binding BusquedaCommand}"/>
             <Button x:Name="jaguilar_Button2" Text="Borrar Todo" Command="{Binding LimpiarCommand}"/>
         </VerticalStackLayout>
 
-        <Label x:Name="jaguilar_Label" Text="{Binding Resultado}"/>
+        <Label x:Name="jaguilar_Label1"
+Text="Se encontro el siguiente Aeropuerto"
+TextColor="MediumPurple"
+FontSize="30"
+FontAttributes="Bold"
+
+VerticalOptions="Center" 
+HorizontalOptions="Center" />
+
+        <Label x:Name="jaguilar2_Label" Text="{Binding Resultado}"
+               VerticalOptions="Center"
+               HorizontalOptions="Center"/>
     </VerticalStackLayout>
-</ContentPage>
+</ContentPage>

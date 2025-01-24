@@ -1,40 +1,40 @@
-using JAguilarEvaluacionFinal.Models;
-using JAguilarEvaluacionFinal.Servicios;  
+﻿using JAguilarEvaluacionFinal.Models;
+using JAguilarEvaluacionFinal.Servicios;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 
 namespace JAguilarEvaluacionFinal.ViewModels
 {
-    public class PaginaBusqueda : INotifyPropertyChanged
+    public class BusquedaVM : INotifyPropertyChanged
     {
         public string Busqueda { get; set; }
 
         public string Resultado { get; set; }
 
-        public ICommand ComandoBusqueda { get; set; }
+        public ICommand BusquedaCommand { get; set; }
 
-        public ICommand ComandoLimpiar { get; set; }
+        public ICommand LimpiarCommand { get; set; }
 
-        public PaginaBusqueda()
+        public BusquedaVM()
         {
             Busqueda = "";
             Resultado = "";
 
-            ComandoBusqueda = new Command(async () =>
+            BusquedaCommand = new Command(async () =>
             {
-                Aeropuerto? aeropuertoJSON = await App.APIClient.GetAirport(Busqueda);
+                BaseDeDatos? baseDeDatos = await App.ClienteAPI.GetAirport(Busqueda);
 
-                if (aeropuertoJSON != null)
+                if (baseDeDatos != null)
                 {
-                    App.DBConnection.SaveAirport(AirportConverter.Convert(aeropuertoJSON));
+                    App.DBConnection.SaveAirport(ServicioAeropuerto.Convert(baseDeDatos));
                 }
 
-                Resultado = aeropuertoJSON == null ? "Error: No se encontr� el registro" : Aeropuerto.Nombre;
+                Resultado = baseDeDatos == null ? "Error: No se encontró el registro" : baseDeDatos.name;
                 OnPropertyChanged(nameof(Resultado));
             });
 
-            ComandoLimpiar = new Command(() =>
+            LimpiarCommand = new Command(() =>
             {
                 Busqueda = "";
                 Resultado = "";

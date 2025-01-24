@@ -1,8 +1,8 @@
 namespace JAguilarEvaluacionFinal.Views;
 
-public partial class BDD : ContentPage
+public partial class PaginaBusqueda : ContentPage
 {
-    public BDD()
+    public PaginaBusqueda()
     {
         InitializeComponent();
     }

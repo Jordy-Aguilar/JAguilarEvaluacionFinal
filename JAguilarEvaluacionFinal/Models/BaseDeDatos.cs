@@ -1,42 +1,42 @@
 ﻿namespace JAguilarEvaluacionFinal.Models
 {
-    public class Ubicacion
+    public class Location
     {
-        public float Latitud { get; set; }
-        public float Longitud { get; set; }
+        public float latitude { get; set; }
+        public float longitude { get; set; }
     }
 
-    public class InformacionContacto
+    public class Contact_Info
     {
-        public string Telefono { get; set; }
-        public string Correo { get; set; }
-        public string SitioWeb { get; set; }
+        public string phone { get; set; }
+        public string email { get; set; }
+        public string website { get; set; }
     }
 
     public class Terminal
     {
-        public string Nombre { get; set; }
-        public Puerta[] Puertas { get; set; }
+        public string name { get; set; }
+        public Gate[] gates { get; set; }
     }
 
-    public class Puerta
+    public class Gate
     {
-        public string NumeroPuerta { get; set; }
-        public string[] Aerolineas { get; set; }
+        public string gate_number { get; set; }
+        public string[] airlines { get; set; }
     }
 
     public class BaseDeDatos
     {
-        public int Id { get; set; }
-        public string Nombre { get; set; }
-        public string Codigo { get; set; }
-        public Ubicacion Ubicacion { get; set; }
-        public string Ciudad { get; set; }
-        public string Pais { get; set; }
-        public string ZonaHoraria { get; set; }
-        public Terminal[] Terminales { get; set; }
-        public string[] Aerolineas { get; set; }
-        public string[] Servicios { get; set; }
-        public InformacionContacto InformacionContacto { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
+        public string code { get; set; }
+        public Location location { get; set; }
+        public string city { get; set; }
+        public string country { get; set; }
+        public string timezone { get; set; }
+        public Terminal[] terminals { get; set; }
+        public string[] airlines { get; set; }
+        public string[] services { get; set; }
+        public Contact_Info contact_info { get; set; }
     }
 }

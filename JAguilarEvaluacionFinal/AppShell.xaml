@@ -3,17 +3,17 @@
     x:Class="JAguilarEvaluacionFinal.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:JAguilarEvaluacionFinal"
+    xmlns:local="clr-namespace:JAguilarEvaluacionFinal.Views"
     Shell.FlyoutBehavior="Disabled"
     Title="JAguilarEvaluacionFinal">
 
     <TabBar>
         <ShellContent
-        Title="Búsqueda"
+        Title="Pagina de Búsqueda de Aeropuerto JA"
         ContentTemplate="{DataTemplate local:PaginaBusqueda}"/>
         <ShellContent
-        Title="BDD"
-        ContentTemplate="{DataTemplate local:PaginaGuardados}"/>
+        Title="Base de Datos de Busquedad JA"
+        ContentTemplate="{DataTemplate local:BDD}"/>
     </TabBar>
 
 </Shell>

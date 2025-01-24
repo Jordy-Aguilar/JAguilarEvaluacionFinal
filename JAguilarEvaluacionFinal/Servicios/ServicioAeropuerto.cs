@@ -6,13 +6,13 @@ namespace JAguilarEvaluacionFinal.Servicios
     {
         public static Aeropuerto Convert(BaseDeDatos baseDeDatos)
         {
-            return new Aeropuerto
+            return new ()
             {
-                Nombre = baseDeDatos.Nombre,
-                Pais = baseDeDatos.Pais,
-                Latitud = baseDeDatos.Ubicacion.Latitud,   
-                Longitud = baseDeDatos.Ubicacion.Longitud, 
-                Correo = baseDeDatos.InformacionContacto.Correo 
+                Name = baseDeDatos.name,
+                Country = baseDeDatos.country,
+                Latitude = baseDeDatos.location.latitude,
+                Longitude = baseDeDatos.location.longitude,
+                Email = baseDeDatos.contact_info.email
             };
         }
     }

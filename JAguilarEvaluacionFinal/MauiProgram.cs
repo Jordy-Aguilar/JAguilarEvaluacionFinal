@@ -1,6 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
 using JAguilarEvaluacionFinal.Servicios;
+
+
 namespace JAguilarEvaluacionFinal
+
 {
     public static class MauiProgram
     {
@@ -18,8 +21,8 @@ namespace JAguilarEvaluacionFinal
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif      
-            builder.Services.AddSingleton<IAPIClient, APIClient>();
-            builder.Services.AddSingleton<IDatabaseConnection, DatabaseConnection>();
+            builder.Services.AddSingleton<IClienteApis, ClienteAPI>();
+            builder.Services.AddSingleton<IBDDConexion, CnxBDD>();
 
             return builder.Build();
         }

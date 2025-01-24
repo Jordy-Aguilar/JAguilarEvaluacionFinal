@@ -4,9 +4,9 @@ namespace JAguilarEvaluacionFinal
 {
     public partial class App : Application
     {
-        public static IAPIClient APIClient { get; set; }
+        public static IClienteApis ClienteAPI { get; set; }
 
-        public static IDatabaseConnection DBConnection { get; set; }
+        public static IBDDConexion DBConnection { get; set; }
 
         public App(IServiceProvider serviceProvider)
         {
@@ -14,8 +14,8 @@ namespace JAguilarEvaluacionFinal
 
             MainPage = new AppShell();
 
-            APIClient = serviceProvider.GetRequiredService<IAPIClient>();
-            DBConnection = serviceProvider.GetRequiredService<IDatabaseConnection>();
+            ClienteAPI = serviceProvider.GetRequiredService<IClienteApis>();
+            DBConnection = serviceProvider.GetRequiredService<IBDDConexion>();
         }
     }
 }

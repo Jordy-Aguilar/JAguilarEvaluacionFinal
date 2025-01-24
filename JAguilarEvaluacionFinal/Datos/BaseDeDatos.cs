@@ -10,8 +10,8 @@ namespace JAguilarEvaluacionFinal.Datos
 {
     public class BaseDeDatos
     {
-        private readonly SQliteAsyncConnection _baseDeDatos;
-        public BaseDedatos(string rutaBD)
+        private readonly SQLiteAsyncConnection _baseDeDatos;
+        public BaseDeDatos(string rutaBD)
         {
             _baseDeDatos = new SQLiteAsyncConnection(rutaBD);
             _baseDeDatos.CreateTableAsync<Aeropuerto>().wait();
